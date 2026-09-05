@@ -1,0 +1,2783 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="..\asset\apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="..\asset\apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="..\asset\apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="..\asset\apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="..\asset\apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="..\asset\apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="..\asset\apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="..\asset\apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="..\asset\favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="..\asset\favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="..\asset\favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="..\asset\favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="..\asset\favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="&nbsp;" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="..\asset\mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="..\asset\mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="..\asset\mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="..\asset\mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="..\asset\mstile-310x310.png" />
+    <title>AlanWalker97 | Online Dersler</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #0f1117;
+        color: #ffffff;
+        user-select: none;
+      }
+
+      header {
+        padding: 60px 20px;
+        background:
+          radial-gradient(circle at top,
+            #24283b 0%,
+            #151821 45%,
+            #0f1117 100%);
+        border-bottom: 1px solid #292d3a;
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 42px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #ffffff;
+        text-shadow:
+          0 0 20px rgba(120, 150, 255, 0.25);
+      }
+
+      header p {
+        margin-top: 12px;
+        color: #8f96a8;
+        font-size: 15px;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 800px;
+        margin: auto;
+        padding: 55px 0 120px;
+      }
+
+      .container h2 {
+        margin: 0;
+        font-size: 28px;
+        color: #ffffff;
+      }
+
+      .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .project {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 22px 25px;
+        background: #171a23;
+        border: 1px solid #292d3a;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #ffffff;
+        transition:
+          transform 0.25s ease,
+          background 0.25s ease,
+          border-color 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .project:hover {
+        transform: translateX(6px);
+        background: #1d2230;
+        border-color: #5865f2;
+        box-shadow:
+          0 8px 30px rgba(0, 0, 0, 0.35),
+          0 0 15px rgba(88, 101, 242, 0.08);
+      }
+
+      .project-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 55px;
+        height: 55px;
+        margin-right: 20px;
+        background: #222735;
+        border-radius: 10px;
+        font-size: 27px;
+        border: 1px solid #303546;
+      }
+
+      .project-info {
+        text-align: left;
+      }
+
+      .project h3 {
+        margin: 0 0 6px;
+        font-size: 19px;
+        color: #ffffff;
+      }
+
+      .project p {
+        margin: 0;
+        color: #858b9b;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .project:hover h3 {
+        color: #7280ff;
+      }
+
+      .arrow {
+        margin-left: auto;
+        color: #555c70;
+        font-size: 22px;
+        transition:
+          transform 0.25s ease,
+          color 0.25s ease;
+      }
+
+      .project:hover .arrow {
+        transform: translateX(5px);
+        color: #7280ff;
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 14px;
+        background: #0b0d12;
+        border-top: 1px solid #292d3a;
+        text-align: center;
+        color: #777e90;
+        font-size: 14px;
+      }
+
+      footer p {
+        margin: 0;
+      }
+
+      @media (max-width: 600px) {
+        header {
+          padding: 45px 15px;
+        }
+
+        header h1 {
+          font-size: 32px;
+        }
+
+        .container {
+          width: 92%;
+          padding-top: 40px;
+        }
+
+        .container h2 {
+          font-size: 24px;
+        }
+
+        .project {
+          padding: 18px;
+        }
+
+        .project-icon {
+          min-width: 48px;
+          height: 48px;
+          margin-right: 14px;
+          font-size: 23px;
+        }
+
+        .project h3 {
+          font-size: 17px;
+        }
+
+        .project p {
+          font-size: 13px;
+        }
+
+        .arrow {
+          font-size: 18px;
+        }
+      }
+
+      input,
+      textarea {
+        caret-color: transparent;
+      }
+    </style>
+    <style>
+      #page-loader {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 255, 255, 0.95);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 99999;
+      }
+
+      #page-loader .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #ddd;
+        border-top-color: #333;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      #page-loader .text {
+        margin-top: 18px;
+        font-size: 16px;
+        color: #333;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <div id="page-loader">
+      <div class="spinner"></div>
+      <div class="text">Ders hazırlanıyor...</div>
+    </div>
+    <script>
+    // ==================================================
+    // GITHUB STORAGE AYARLARI
+    // ==================================================
+
+    const GITHUB_OWNER = "AlanWalker97";
+    const GITHUB_REPO = "OnlineDersStorage";
+    const GITHUB_TOKEN = "mypat";
+
+    // ==================================================
+    // PAGE SHOW
+    // ==================================================
+
+    window.addEventListener("pageshow", function(event) {
+
+        document.getElementById("page-loader").style.display = "none";
+
+    });
+
+    // ==================================================
+    // DOM READY
+    // ==================================================
+
+    document.addEventListener("DOMContentLoaded", async function() {
+
+        // ==================================================
+        // SERVICE WORKER DESTEĞİ
+        // ==================================================
+
+        if (!("serviceWorker" in navigator)) {
+
+            console.error(
+                "Service Worker desteklenmiyor."
+            );
+
+            return;
+        }
+
+        try {
+
+            // ==================================================
+            // SERVICE WORKER'I KAYDET
+            // ==================================================
+
+            const registration =
+                await navigator.serviceWorker.register("./sw.js");
+
+            // ==================================================
+            // SERVICE WORKER HAZIR OLANA KADAR BEKLE
+            // ==================================================
+
+            await navigator.serviceWorker.ready;
+
+            console.log(
+                "[INDEX] Service Worker hazır:",
+                registration.scope
+            );
+
+            // ==================================================
+            // AKTİF SERVICE WORKER'I BUL
+            // ==================================================
+
+            const sw =
+                navigator.serviceWorker.controller ||
+                registration.active;
+
+            if (!sw) {
+
+                throw new Error(
+                    "Aktif Service Worker bulunamadı."
+                );
+            }
+
+            console.log(
+                "[INDEX] Aktif Service Worker bulundu."
+            );
+
+            // ==================================================
+            // GITHUB CONFIG'İ SERVICE WORKER'A GÖNDER
+            // ==================================================
+
+            sw.postMessage({
+
+                type: "SET_GITHUB_CONFIG",
+
+                owner: GITHUB_OWNER,
+
+                repo: GITHUB_REPO,
+
+                token: GITHUB_TOKEN
+
+            });
+
+            console.log(
+                "[INDEX] GitHub ayarları SW'ye gönderildi:",
+                GITHUB_OWNER,
+                GITHUB_REPO
+            );
+
+            // ==================================================
+            // LOADER
+            // ==================================================
+
+            const loader =
+                document.getElementById("page-loader");
+
+            // ==================================================
+            // DERS LİNKLERİNİ YAKALA
+            // ==================================================
+
+            document
+                .querySelectorAll("a.project")
+                .forEach(link => {
+
+                    link.addEventListener(
+                        "click",
+                        function(event) {
+
+                            event.preventDefault();
+
+                            // ==================================================
+                            // DERS URL
+                            // ==================================================
+
+                            const lessonUrl =
+                                new URL(
+                                    link.getAttribute("href"),
+                                    window.location.href
+                                );
+
+                            console.log(
+                                "[INDEX] Ders:",
+                                lessonUrl.href
+                            );
+
+                            // ==================================================
+                            // LOADER'I GÖSTER
+                            // ==================================================
+
+                            loader.style.display = "flex";
+
+                            // ==================================================
+                            // AKTİF SERVICE WORKER'I AL
+                            // ==================================================
+
+                            const currentSW =
+                                navigator.serviceWorker.controller ||
+                                registration.active;
+
+                            if (!currentSW) {
+
+                                console.error(
+                                    "[INDEX] Aktif Service Worker yok!"
+                                );
+
+                                loader.style.display = "none";
+
+                                alert(
+                                    "Service Worker aktif değil."
+                                );
+
+                                return;
+                            }
+
+                            // ==================================================
+                            // MESSAGE CHANNEL
+                            // ==================================================
+
+                            const messageChannel =
+                                new MessageChannel();
+
+                            // ==================================================
+                            // SERVICE WORKER CEVABI
+                            // ==================================================
+
+                            messageChannel.port1.onmessage =
+                                function(event) {
+
+                                    // ------------------------------------------
+                                    // CACHE TAMAMLANDI
+                                    // ------------------------------------------
+
+                                    if (
+                                        event.data?.type ===
+                                        "CACHE_COMPLETE"
+                                    ) {
+
+                                        console.log(
+                                            "[INDEX] Ders medyaları hazır."
+                                        );
+
+                                        // Artık ders sayfasına git
+                                        window.location.href =
+                                            lessonUrl.href;
+
+                                        return;
+                                    }
+
+                                    // ------------------------------------------
+                                    // CACHE HATASI
+                                    // ------------------------------------------
+
+                                    if (
+                                        event.data?.type ===
+                                        "CACHE_ERROR"
+                                    ) {
+
+                                        console.error(
+                                            "[INDEX] Video cache hatası:",
+                                            event.data.error
+                                        );
+
+                                        loader.style.display =
+                                            "none";
+
+                                        alert(
+                                            "Video cache hatası:\n\n" +
+                                            event.data.error
+                                        );
+
+                                        return;
+                                    }
+
+                                };
+
+                            // ==================================================
+                            // CACHE VIDEO MESAJI
+                            // ==================================================
+
+                            console.log(
+                                "[INDEX] CACHE_VIDEO gönderiliyor:",
+                                lessonUrl.pathname
+                            );
+
+                            currentSW.postMessage(
+
+                                {
+                                    type: "CACHE_VIDEO",
+
+                                    url: lessonUrl.pathname
+                                },
+
+                                [
+                                    messageChannel.port2
+                                ]
+
+                            );
+
+                        }
+                    );
+
+                });
+
+        } catch (error) {
+
+            console.error(
+                "[INDEX] Service Worker hatası:",
+                error
+            );
+
+            alert(
+                "Service Worker hatası:\n\n" +
+                error.message
+            );
+
+        }
+
+    });
+</script>
+  </head>
+  <body>
+    <header>
+      <h1>Online Dersler</h1>
+    </header>
+    <main class="container">
+      <div class="projects">
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 1. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 1. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 2. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 2. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 3. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 3. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 3. DERS devami\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 3. DERS devami</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 4. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 4. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 5. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 5. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 6. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 6. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 7. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 7. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 8. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 8. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\5 DERSTE 5 NET SAYISAL YETENEK KAMPI - 9. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>5 DERSTE 5 NET SAYISAL YETENEK KAMPI - 9. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\EGITIM UZEM'DE EGITIM ANLAYISIMIZ VE DERSLERIN ISLENISI\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>EGITIM UZEM'DE EGITIM ANLAYISIMIZ VE DERSLERIN ISLENISI</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 TEMEL MATEMATIK 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 TEMEL MATEMATIK 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 TEMEL MATEMATIK 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 TEMEL MATEMATIK 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 TEMEL MATEMATIK 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 TEMEL MATEMATIK 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 TEMEL MATEMATIK 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 TEMEL MATEMATIK 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TURKCE-SOZEL YETENEK 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TURKCE-SOZEL YETENEK 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 1.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 1.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 1.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 1.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TURKCE-SOZEL YETENEK 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TURKCE-SOZEL YETENEK 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 2.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 2.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 2.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 2.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TURKCE-SOZEL YETENEK 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TURKCE-SOZEL YETENEK 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 3.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 3.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 3.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 3.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TURKCE-SOZEL YETENEK 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TURKCE-SOZEL YETENEK 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\MOTIVASYON REHBERLIK SEMINERI\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>MOTIVASYON REHBERLIK SEMINERI</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 4.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 4.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 4.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 4.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TURKCE- SOZEL YETENEK 5. DERS (SOZEL MANTIK)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TURKCE- SOZEL YETENEK 5. DERS (SOZEL MANTIK)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 5.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 5.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 5.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 5.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TURKCE- SOZEL YETENEK 6. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TURKCE- SOZEL YETENEK 6. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 6.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 6.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 6.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 6.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 7.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 7.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TURKCE- SOZEL YETENEK 7. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TURKCE- SOZEL YETENEK 7. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 7.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 7.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 7.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 7.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - TURKCE - 8. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - TURKCE - 8. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 8.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 8.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 8.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 8.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 8.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 8.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 8.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 8.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 9.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 9.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - TURKCE - 9. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - TURKCE - 9. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 9.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 9.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 9.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 9.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 9.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 9.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\HIZLI OKUMA KAMPI DERSI 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>HIZLI OKUMA KAMPI DERSI 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 10.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 10.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 11.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 11.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 10.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 10.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 10.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 10.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\HIZLI OKUMA KAMPI DERSI 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>HIZLI OKUMA KAMPI DERSI 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 10.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIMIN TEMELLERI VE TURK MILLI EGITIM SISTEMI 10.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MATEMATIK KAMPI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MATEMATIK KAMPI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - TURKCE - 10. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - TURKCE - 10. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 11.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 11.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 11.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 11.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\HIZLI OKUMA KAMPI DERSI 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>HIZLI OKUMA KAMPI DERSI 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 12.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 12.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\REHBERLIK SEMINERI-DEGISEN AGS SISTEMI\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>REHBERLIK SEMINERI-DEGISEN AGS SISTEMI</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MATEMATIK KAMPI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MATEMATIK KAMPI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - TURKCE - 11. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - TURKCE - 11. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- OYT 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- OYT 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-MAARIF MODELI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-MAARIF MODELI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 12.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 12.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 12.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 12.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\HIZLI OKUMA KAMPI DERSI 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>HIZLI OKUMA KAMPI DERSI 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 13.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 13.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MATEMATIK KAMPI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MATEMATIK KAMPI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - TURKCE - 12. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - TURKCE - 12. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-MAARIF MODELI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-MAARIF MODELI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 13.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 13.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 14.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 14.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 1.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 1.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 1.Ders (2)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 1.Ders (2)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-MAARIF MODELI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-MAARIF MODELI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 13.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 13.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 14.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 14.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 15.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 15.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MATEMATIK KAMPI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MATEMATIK KAMPI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 2.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 2.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-MAARIF MODELI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-MAARIF MODELI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 14.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 14.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 15.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 15.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 16.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 16.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\MATEMATIK 10 NET KAMPI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>MATEMATIK 10 NET KAMPI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA ILE PARAGRAF KAMPI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA ILE PARAGRAF KAMPI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 3.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 3.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - GELISIM PSIKOLOJISI 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-MAARIF MODELI 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-MAARIF MODELI 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 15.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 15.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 16.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 16.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 17.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 17.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\MATEMATIK 10 NET KAMPI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>MATEMATIK 10 NET KAMPI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA ILE PARAGRAF KAMPI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA ILE PARAGRAF KAMPI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 4.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 4.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 4.Ders Devam dersi\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 4.Ders Devam dersi</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - OGRENME PSIKOLOJISI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - OGRENME PSIKOLOJISI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-Turk Milli Egitim Sistemi 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-Turk Milli Egitim Sistemi 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 16.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 16.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - OGRENME PSIKOLOJISI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - OGRENME PSIKOLOJISI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 17.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 17.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\KUTUPHANE SAATI\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>KUTUPHANE SAATI</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 18.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 18.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\MATEMATIK 10 NET KAMPI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>MATEMATIK 10 NET KAMPI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA ILE PARAGRAF KAMPI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA ILE PARAGRAF KAMPI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 5.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 5.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 8.DERS (Ogretim Teknikleri ve Egitimin Temelleri ile Ilgili Soru Cozumu-Sinif Yonetimi)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Ogretim Yontem ve Teknikleri 8.DERS (Ogretim Teknikleri ve Egitimin Temelleri ile Ilgili Soru Cozumu-Sinif Yonetimi)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - OGRENME PSIKOLOJISI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - OGRENME PSIKOLOJISI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-EGITIM OGRETIMDE TEKNOLOJI 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-EGITIM OGRETIMDE TEKNOLOJI 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 17.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 17.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - OGRENME PSIKOLOJISI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI VE TURK MILLI EGITIM SISTEMI - OGRENME PSIKOLOJISI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 18.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 18.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\REHBERLIK SEMINERI\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>REHBERLIK SEMINERI</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 19.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 19.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\MATEMATIK 10 NET KAMPI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>MATEMATIK 10 NET KAMPI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA ILE PARAGRAF KAMPI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA ILE PARAGRAF KAMPI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 6.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 6.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Sinif Yonetimi 9.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Sinif Yonetimi 9.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-EGITIM OGRETIMDE TEKNOLOJI 8.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-EGITIM OGRETIMDE TEKNOLOJI 8.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 18.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 18.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-Sinif Yonetimi ve Ogretim Teknigi Soru Cozumu\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-Sinif Yonetimi ve Ogretim Teknigi Soru Cozumu</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 19.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 19.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\KUTUPHANE SAATI (2)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>KUTUPHANE SAATI (2)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 20.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 20.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\MATEMATIK 10 NET KAMPI 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>MATEMATIK 10 NET KAMPI 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA ILE PARAGRAF KAMPI 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA ILE PARAGRAF KAMPI 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 7.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 7.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 8.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 8.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 2.DERS (2)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 2.DERS (2)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI-EGITIM OGRETIMDE TEKNOLOJI 9.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI-EGITIM OGRETIMDE TEKNOLOJI 9.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 19.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 19.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Program Okuryazarligi 10.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Program Okuryazarligi 10.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 20.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 20.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 21.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 21.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 9.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 9.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\MATEMATIK 10 NET KAMPI 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>MATEMATIK 10 NET KAMPI 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA ILE PARAGRAF KAMPI 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA ILE PARAGRAF KAMPI 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Program Okuryazarligi 11.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Program Okuryazarligi 11.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 22.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 22.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 10.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 10.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\PROBLEMLER KAMPI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>PROBLEMLER KAMPI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Didem hoca ile Sozel Mantik Kamp\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Didem hoca ile Sozel Mantik Kamp</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI- Program Okuryazarligi 12.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI- Program Okuryazarligi 12.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 3.DERS Devami\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 3.DERS Devami</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - REHBERLIK 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - REHBERLIK 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 20.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 20.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 21.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 21.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Kutuphane Saati (3)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Kutuphane Saati (3)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 23.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 23.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 11.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 11.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\PROBLEMLER KAMPI DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>PROBLEMLER KAMPI DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Didem hoca ile Sozel Mantik Kamp 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Didem hoca ile Sozel Mantik Kamp 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - REHBERLIK 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - REHBERLIK 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 21.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 21.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 22.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 22.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 24.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 24.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK 12.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK 12.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\PROBLEMLER KAMPI DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>PROBLEMLER KAMPI DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA SOZEL MANTIK 3. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA SOZEL MANTIK 3. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 Egitim Bilimleri Rehberlik\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 Egitim Bilimleri Rehberlik</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 22.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 22.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 23.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 23.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 25.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 25.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK VATANDASLIK Soru Cozumu\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK VATANDASLIK Soru Cozumu</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\PROBLEMLER KAMPI DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>PROBLEMLER KAMPI DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA SOZEL MANTIK 4. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA SOZEL MANTIK 4. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 23.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 23.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 24.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 24.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 26.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 26.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - REHBERLIK 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - REHBERLIK 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\PROBLEMLER KAMPI DERS 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>PROBLEMLER KAMPI DERS 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA SOZEL MANTIK 5. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA SOZEL MANTIK 5. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 24.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 24.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - REHBERLIK 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - REHBERLIK 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 25.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 25.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\PROBLEMLER KAMPI DERS 6\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>PROBLEMLER KAMPI DERS 6</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\DIDEM HOCA SOZEL MANTIK 6. DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>DIDEM HOCA SOZEL MANTIK 6. DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 25.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 25.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - REHBERLIK 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - REHBERLIK 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 26.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 26.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 27.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 27.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\GEOMETRI KAMPI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>GEOMETRI KAMPI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 26.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 26.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 27.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 27.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 28.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 28.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\GEOMETRI KAMPI DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>GEOMETRI KAMPI DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 8.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 8.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - OLCME DEGERLENDIRME 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 27.DERS (SAYISAL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 27.DERS (SAYISAL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 EGITIM BILIMLERI - REHBERLIK 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 EGITIM BILIMLERI - REHBERLIK 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 28.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 28.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 9.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 9.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 10.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 10.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\GEOMETRI KAMPI DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>GEOMETRI KAMPI DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS TARIH 29.Ders\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS TARIH 29.Ders</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 8.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 8.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-MEB AGS COGRAFYA 11.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-MEB AGS COGRAFYA 11.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 6\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 6</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 29.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 29.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS MEVZUAT BILGISI 9.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS MEVZUAT BILGISI 9.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\SINAVA 1 AY KALA NELER YAPILIR NELERE DIKKAT EDILMELIDIR\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>SINAVA 1 AY KALA NELER YAPILIR NELERE DIKKAT EDILMELIDIR</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 7\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 7</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 30.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 30.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-AGS GENEL TEKRAR TURKCE 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-AGS GENEL TEKRAR TURKCE 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 8\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 8</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR GELISIM PSILOLOJISI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR GELISIM PSILOLOJISI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\GEOMETRI KAMPI DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>GEOMETRI KAMPI DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 9\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 9</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OGRENME PSILOLOJISI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OGRENME PSILOLOJISI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OLCME DEGERLENDIRME 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OLCME DEGERLENDIRME 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 10\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 10</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 31.DERS (SOZEL GRUP)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK - MEB AGS MATEMATIK-SAYISAL YETENEK 31.DERS (SOZEL GRUP)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR TARIH 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR TARIH 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\GEOMETRI KAMPI DERS 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>GEOMETRI KAMPI DERS 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR COGRAFYA 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR COGRAFYA 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR COGRAFYA 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR COGRAFYA 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 11\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 11</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 12\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 12</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 13\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 13</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 14\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 14</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Zeynep Salman ICLI 20 li Deneme Cozumu Ders 15\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Zeynep Salman ICLI 20 li Deneme Cozumu Ders 15</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR MEVZUAT BILGISI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR MEVZUAT BILGISI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR MEVZUAT BILGISI 1.DERS (2)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR MEVZUAT BILGISI 1.DERS (2)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR MEVZUAT BILGISI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR MEVZUAT BILGISI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR REHBERLIK 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR REHBERLIK 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB AGS mevzuat bilgisi genel tekrar\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB AGS mevzuat bilgisi genel tekrar</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR REHBERLIK 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR REHBERLIK 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR TARIH 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR TARIH 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU GELISIM PSIKOLOJISI SORU COZUM DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU GELISIM PSIKOLOJISI SORU COZUM DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\GEOMETRI KAMPI DERS 6\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>GEOMETRI KAMPI DERS 6</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU GELISIM PSIKOLOJISI SORU COZUM DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU GELISIM PSIKOLOJISI SORU COZUM DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU REHBERLIK SORU COZUM DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU REHBERLIK SORU COZUM DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU REHBERLIK SORU COZUM DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU REHBERLIK SORU COZUM DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR TARIH 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR TARIH 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR TARIH 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR TARIH 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OGRENME PSIKOLOJISI SORU COZUM DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OGRENME PSIKOLOJISI SORU COZUM DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OGRENME PSIKOLOJISI SORU COZUM DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OGRENME PSIKOLOJISI SORU COZUM DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OGRENME PSIKOLOJISI SORU COZUM DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OGRENME PSIKOLOJISI SORU COZUM DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OGRENME PSIKOLOJISI SORU COZUM DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OGRENME PSIKOLOJISI SORU COZUM DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR MEVZUAT BILGISI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR MEVZUAT BILGISI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OLCME DEGERLENDIRME SORU COZUM DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OLCME DEGERLENDIRME SORU COZUM DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\SON PROVA REHBERLIK SEMINERI\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>SON PROVA REHBERLIK SEMINERI</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU MEVZUAT BILGISI SORU COZUM DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU MEVZUAT BILGISI SORU COZUM DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU MEVZUAT BILGISI SORU COZUM DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU MEVZUAT BILGISI SORU COZUM DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU MEVZUAT BILGISI SORU COZUM DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU MEVZUAT BILGISI SORU COZUM DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OLCME DEGERLENDIRME SORU COZUM DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OLCME DEGERLENDIRME SORU COZUM DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OLCME DEGERLENDIRME SORU COZUM DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OLCME DEGERLENDIRME SORU COZUM DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR MAARIF MODELI-EGITIM OGRETIMDE TEKNOLOJI-TURK MILLI EGITIM SISTEMI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR MAARIF MODELI-EGITIM OGRETIMDE TEKNOLOJI-TURK MILLI EGITIM SISTEMI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR MAARIF MODELI-EGITIM OGRETIMDE TEKNOLOJI-TURK MILLI EGITIM SISTEMI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR MAARIF MODELI-EGITIM OGRETIMDE TEKNOLOJI-TURK MILLI EGITIM SISTEMI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR MAARIF MODELI-EGITIM OGRETIMDE TEKNOLOJI-TURK MILLI EGITIM SISTEMI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR MAARIF MODELI-EGITIM OGRETIMDE TEKNOLOJI-TURK MILLI EGITIM SISTEMI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 8.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI 8.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 MEB-AGS GENEL TEKRAR OLCME DEGERLENDIRME 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 MEB-AGS GENEL TEKRAR OLCME DEGERLENDIRME 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 6\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 6</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR TARIH 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR TARIH 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR TARIH 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR TARIH 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\REHBERLIK SEMINERI (2)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>REHBERLIK SEMINERI (2)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS-AGS GENEL TEKRAR TURKCE 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS-AGS GENEL TEKRAR TURKCE 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 7\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU OYT-PROGRAM OKURYAZARLIGI- SINIF YONETIMI SORU COZUM DERS 7</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 HIZLI KONU BOL SORU MAARIF MODELI-EGITIM OGRETIMDE TEKNOLOJI-TURK MILLI EGITIM SISTEMI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 HIZLI KONU BOL SORU MAARIF MODELI-EGITIM OGRETIMDE TEKNOLOJI-TURK MILLI EGITIM SISTEMI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK COGRAFYA SORU ANALIZI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK COGRAFYA SORU ANALIZI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK COGRAFYA SORU ANALIZI DERS 1 (2)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK COGRAFYA SORU ANALIZI DERS 1 (2)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\SON 2 AYDA NELER YAPILIR REHBERLIK SEMINERI\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>SON 2 AYDA NELER YAPILIR REHBERLIK SEMINERI</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK VATANDASLIK SORU ANALIZI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK VATANDASLIK SORU ANALIZI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TARIH SORU ANALIZI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TARIH SORU ANALIZI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR TARIH 7.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR TARIH 7.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK MATEMATIK SORU ANALIZI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK MATEMATIK SORU ANALIZI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS MEB-AGS GENEL TEKRAR MATEMATIK(SAYISAL YETENEK) 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK COGRAFYA SORU ANALIZI DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK COGRAFYA SORU ANALIZI DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GENEL TEKRAR VATANDASLIK 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GENEL TEKRAR VATANDASLIK 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK VATANDASLIK SORU ANALIZI DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK VATANDASLIK SORU ANALIZI DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GENEL TEKRAR VATANDASLIK 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GENEL TEKRAR VATANDASLIK 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GENEL TEKRAR VATANDASLIK 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GENEL TEKRAR VATANDASLIK 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GENEL TEKRAR VATANDASLIK 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GENEL TEKRAR VATANDASLIK 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK MATEMATIK SORU ANALIZI DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK MATEMATIK SORU ANALIZI DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TURKCE SORU ANALIZI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TURKCE SORU ANALIZI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK GEOMETRI 1.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK GEOMETRI 1.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK COGRAFYA SORU ANALIZI DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK COGRAFYA SORU ANALIZI DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK VATANDASLIK SORU ANALIZI DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK VATANDASLIK SORU ANALIZI DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TARIH SORU ANALIZI DERS 1 (2)\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TARIH SORU ANALIZI DERS 1 (2)</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK MATEMATIK SORU ANALIZI DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK MATEMATIK SORU ANALIZI DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TURKCE SORU ANALIZI DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TURKCE SORU ANALIZI DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Sinava 1 Ay Kala Neler Yapilir\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Sinava 1 Ay Kala Neler Yapilir</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK GEOMETRI 2.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK GEOMETRI 2.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK GEOMETRI 3.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK GEOMETRI 3.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK GEOMETRI 4.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK GEOMETRI 4.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK GEOMETRI 5.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK GEOMETRI 5.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 KPSS GYGK GEOMETRI 6.DERS\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 KPSS GYGK GEOMETRI 6.DERS</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK GEOMETRI SORU ANALIZI DERS 1\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK GEOMETRI SORU ANALIZI DERS 1</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK VATANDASLIK SORU ANALIZI DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK VATANDASLIK SORU ANALIZI DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TARIH SORU ANALIZI DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TARIH SORU ANALIZI DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK MATEMATIK SORU ANALIZI DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK MATEMATIK SORU ANALIZI DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TURKCE SORU ANALIZI DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TURKCE SORU ANALIZI DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK COGRAFYA SORU ANALIZI DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK COGRAFYA SORU ANALIZI DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK VATANDASLIK SORU ANALIZI DERS 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK VATANDASLIK SORU ANALIZI DERS 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\GEOMETRI SORU ANALIZI DERS 2\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>GEOMETRI SORU ANALIZI DERS 2</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TARIH SORU ANALIZI DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TARIH SORU ANALIZI DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TURKCE SORU ANALIZI DERS 4\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TURKCE SORU ANALIZI DERS 4</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK MATEMATIK SORU ANALIZI DERS 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK MATEMATIK SORU ANALIZI DERS 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\GEOMETRI SORU ANALIZI DERS 3\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>GEOMETRI SORU ANALIZI DERS 3</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TARIH SORU ANALIZI DERS 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TARIH SORU ANALIZI DERS 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK VATANDASLIK SORU ANALIZI DERS 6\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK VATANDASLIK SORU ANALIZI DERS 6</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK COGRAFYA SORU ANALIZI DERS 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK COGRAFYA SORU ANALIZI DERS 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\2026 GYGK TURKCE SORU ANALIZI DERS 5\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>2026 GYGK TURKCE SORU ANALIZI DERS 5</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+        <a href=".\Sinav Zamani Yapilmasi Gerekenler\index.html" class="project" target="_self">
+          <div class="project-info">
+            <h3>Sinav Zamani Yapilmasi Gerekenler</h3>
+          </div>
+          <div class="arrow">→</div>
+        </a>
+      </div>
+    </main>
+    <footer>
+      <p> &copy; <span id="year"></span> AlanWalker97 </p>
+    </footer>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
