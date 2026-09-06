@@ -272,6 +272,7 @@
     const GITHUB_REPO = "OnlineDersStorage";
     const GITHUB_TOKEN = "mypat";
 
+
     // ==================================================
     // PAGE SHOW
     // ==================================================
@@ -281,6 +282,7 @@
         document.getElementById("page-loader").style.display = "none";
 
     });
+
 
     // ==================================================
     // DOM READY
@@ -301,6 +303,7 @@
             return;
         }
 
+
         try {
 
             // ==================================================
@@ -310,16 +313,19 @@
             const registration =
                 await navigator.serviceWorker.register("./sw.js");
 
+
             // ==================================================
             // SERVICE WORKER HAZIR OLANA KADAR BEKLE
             // ==================================================
 
             await navigator.serviceWorker.ready;
 
+
             console.log(
                 "[INDEX] Service Worker hazır:",
                 registration.scope
             );
+
 
             // ==================================================
             // AKTİF SERVICE WORKER'I BUL
@@ -329,16 +335,20 @@
                 navigator.serviceWorker.controller ||
                 registration.active;
 
+
             if (!sw) {
 
                 throw new Error(
                     "Aktif Service Worker bulunamadı."
                 );
+
             }
+
 
             console.log(
                 "[INDEX] Aktif Service Worker bulundu."
             );
+
 
             // ==================================================
             // GITHUB CONFIG'İ SERVICE WORKER'A GÖNDER
@@ -356,11 +366,13 @@
 
             });
 
+
             console.log(
                 "[INDEX] GitHub ayarları SW'ye gönderildi:",
                 GITHUB_OWNER,
                 GITHUB_REPO
             );
+
 
             // ==================================================
             // LOADER
@@ -368,6 +380,7 @@
 
             const loader =
                 document.getElementById("page-loader");
+
 
             // ==================================================
             // DERS LİNKLERİNİ YAKALA
@@ -383,26 +396,61 @@
 
                             event.preventDefault();
 
+
                             // ==================================================
-                            // DERS URL
+                            // ORİJİNAL HREF
                             // ==================================================
 
-                            const lessonUrl =
-                                new URL(
-                                    link.getAttribute("href"),
-                                    window.location.href
-                                );
+                            const rawHref =
+                                link.getAttribute("href");
+
 
                             console.log(
-                                "[INDEX] Ders:",
-                                lessonUrl.href
+                                "[INDEX] Orijinal href:",
+                                rawHref
                             );
+
+
+                            // ==================================================
+                            // HREF NORMALİZE ET
+                            // ==================================================
+
+                            const normalizedHref =
+                                rawHref.replace(
+                                    /\\/g,
+                                    "/"
+                                );
+
+
+                            // ==================================================
+                            // DERS KLASÖRÜNÜ BUL
+                            // ==================================================
+
+                            const lessonPath =
+                                normalizedHref
+                                    .replace(
+                                        /^\.\/?/,
+                                        ""
+                                    )
+                                    .replace(
+                                        /\/index\.html$/i,
+                                        ""
+                                    );
+
+
+                            console.log(
+                                "[INDEX] Ders klasörü:",
+                                lessonPath
+                            );
+
 
                             // ==================================================
                             // LOADER'I GÖSTER
                             // ==================================================
 
-                            loader.style.display = "flex";
+                            loader.style.display =
+                                "flex";
+
 
                             // ==================================================
                             // AKTİF SERVICE WORKER'I AL
@@ -412,20 +460,27 @@
                                 navigator.serviceWorker.controller ||
                                 registration.active;
 
+
                             if (!currentSW) {
 
                                 console.error(
                                     "[INDEX] Aktif Service Worker yok!"
                                 );
 
-                                loader.style.display = "none";
+
+                                loader.style.display =
+                                    "none";
+
 
                                 alert(
                                     "Service Worker aktif değil."
                                 );
 
+
                                 return;
+
                             }
+
 
                             // ==================================================
                             // MESSAGE CHANNEL
@@ -433,6 +488,7 @@
 
                             const messageChannel =
                                 new MessageChannel();
+
 
                             // ==================================================
                             // SERVICE WORKER CEVABI
@@ -442,67 +498,80 @@
                                 function(event) {
 
                                     // ------------------------------------------
-                                    // CACHE TAMAMLANDI
+                                    // DERS HAZIR
                                     // ------------------------------------------
 
                                     if (
                                         event.data?.type ===
-                                        "CACHE_COMPLETE"
+                                        "LESSON_READY"
                                     ) {
 
                                         console.log(
-                                            "[INDEX] Ders medyaları hazır."
+                                            "[INDEX] Ders RAM'e yüklendi."
                                         );
 
-                                        // Artık ders sayfasına git
+
+                                        // --------------------------------------
+                                        // DERS SAYFASINA GİT
+                                        // --------------------------------------
+
                                         window.location.href =
-                                            lessonUrl.href;
+                                            "./dersizle.html";
+
 
                                         return;
+
                                     }
 
+
                                     // ------------------------------------------
-                                    // CACHE HATASI
+                                    // DERS YÜKLEME HATASI
                                     // ------------------------------------------
 
                                     if (
                                         event.data?.type ===
-                                        "CACHE_ERROR"
+                                        "LESSON_ERROR"
                                     ) {
 
                                         console.error(
-                                            "[INDEX] Video cache hatası:",
+                                            "[INDEX] Ders yükleme hatası:",
                                             event.data.error
                                         );
+
 
                                         loader.style.display =
                                             "none";
 
+
                                         alert(
-                                            "Video cache hatası:\n\n" +
+                                            "Ders yükleme hatası:\n\n" +
                                             event.data.error
                                         );
 
+
                                         return;
+
                                     }
 
                                 };
 
+
                             // ==================================================
-                            // CACHE VIDEO MESAJI
+                            // DERSİ SERVICE WORKER'A YÜKLET
                             // ==================================================
 
                             console.log(
-                                "[INDEX] CACHE_VIDEO gönderiliyor:",
-                                lessonUrl.pathname
+                                "[INDEX] LOAD_LESSON gönderiliyor:",
+                                lessonPath
                             );
+
 
                             currentSW.postMessage(
 
                                 {
-                                    type: "CACHE_VIDEO",
+                                    type: "LOAD_LESSON",
 
-                                    url: lessonUrl.pathname
+                                    lessonPath: lessonPath
                                 },
 
                                 [
@@ -516,12 +585,14 @@
 
                 });
 
+
         } catch (error) {
 
             console.error(
                 "[INDEX] Service Worker hatası:",
                 error
             );
+
 
             alert(
                 "Service Worker hatası:\n\n" +

@@ -1,5 +1,3 @@
-const CACHE_NAME = "bbb-video-v1";
-
 // ======================================================
 // GITHUB AYARLARI
 // ======================================================
@@ -8,21 +6,26 @@ let githubOwner = null;
 let githubRepo = null;
 let githubToken = null;
 
+
 // ======================================================
-// DESTEKLENEN MEDYA DOSYALARI
+// AKTİF DERS
 // ======================================================
 
-const MEDIA_FILES = [
+// Örnek:
+//
+// currentLesson.path
+// "15 DERSTE 5 NET SAYISAL YETENEK KAMPI - 1. DERS"
+//
+// currentLesson.files
+// Map {
+//     "index.html" -> ArrayBuffer,
+//     "css/style.css" -> ArrayBuffer,
+//     "js/player.js" -> ArrayBuffer,
+//     ...
+// }
 
-    "video/webcams.mp4",
+let currentLesson = null;
 
-    "video/webcams.webm",
-
-    "deskshare/deskshare.mp4",
-
-    "deskshare/deskshare.webm"
-
-];
 
 // ======================================================
 // INSTALL
@@ -30,13 +33,12 @@ const MEDIA_FILES = [
 
 self.addEventListener("install", event => {
 
-    console.log(
-        "[SW] Installed"
-    );
+    console.log("[SW] Installed");
 
     self.skipWaiting();
 
 });
+
 
 // ======================================================
 // ACTIVATE
@@ -44,15 +46,14 @@ self.addEventListener("install", event => {
 
 self.addEventListener("activate", event => {
 
-    console.log(
-        "[SW] Activated"
-    );
+    console.log("[SW] Activated");
 
     event.waitUntil(
         self.clients.claim()
     );
 
 });
+
 
 // ======================================================
 // INDEX'TEN GELEN MESAJLAR
@@ -78,6 +79,7 @@ self.addEventListener("message", event => {
         githubToken =
             event.data.token;
 
+
         console.log(
             "[SW] GitHub ayarları alındı:",
             githubOwner,
@@ -87,89 +89,94 @@ self.addEventListener("message", event => {
         return;
     }
 
+
     // ==================================================
-    // CACHE VIDEO
+    // DERS YÜKLE
     // ==================================================
 
     if (
-        event.data?.type !==
-        "CACHE_VIDEO"
+        event.data?.type ===
+        "LOAD_LESSON"
     ) {
-        return;
+
+        const lessonPath =
+            event.data.lessonPath;
+
+        const port =
+            event.ports[0];
+
+
+        console.log(
+            "[SW] Ders yükleme başladı:",
+            lessonPath
+        );
+
+
+        event.waitUntil(
+
+            loadLesson(
+                lessonPath
+            )
+
+            .then(() => {
+
+                console.log(
+                    "[SW] Ders RAM'e tamamen yüklendi:",
+                    lessonPath
+                );
+
+
+                if (port) {
+
+                    port.postMessage({
+
+                        type:
+                            "LESSON_READY"
+
+                    });
+
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(
+                    "[SW] Ders yükleme hatası:",
+                    error
+                );
+
+
+                if (port) {
+
+                    port.postMessage({
+
+                        type:
+                            "LESSON_ERROR",
+
+                        error:
+                            error.message
+
+                    });
+
+                }
+
+            })
+
+        );
+
     }
 
-    const lessonUrl =
-        event.data.url;
-
-    const port =
-        event.ports[0];
-
-    console.log(
-        "[SW] Ders medya cacheleme başladı:",
-        lessonUrl
-    );
-
-    event.waitUntil(
-
-        cacheLessonMedia(
-            lessonUrl
-        )
-
-        .then(() => {
-
-            console.log(
-                "[SW] Ders medya cacheleme tamamlandı."
-            );
-
-            if (port) {
-
-                port.postMessage({
-
-                    type:
-                        "CACHE_COMPLETE"
-
-                });
-
-            }
-
-        })
-
-        .catch(error => {
-
-            console.error(
-                "[SW] Cache hatası:",
-                error
-            );
-
-            if (port) {
-
-                port.postMessage({
-
-                    type:
-                        "CACHE_ERROR",
-
-                    error:
-                        error.message
-
-                });
-
-            }
-
-        })
-
-    );
-
 });
+
 
 // ======================================================
 // GITHUB API URL
 // ======================================================
 
-function getGitHubApiUrl(filePath) {
-
-    // ==================================================
-    // CONFIG KONTROLÜ
-    // ==================================================
+function getGitHubApiUrl(
+    githubPath
+) {
 
     if (
         !githubOwner ||
@@ -183,25 +190,23 @@ function getGitHubApiUrl(filePath) {
 
     }
 
-    // ==================================================
-    // BAŞTAKİ / KARAKTERİNİ KALDIR
-    // ==================================================
 
     const cleanPath =
-        filePath.replace(
+        githubPath.replace(
             /^\/+/,
             ""
         );
 
-    // ==================================================
-    // PATH'İ ENCODE ET
-    // ==================================================
 
-    const encodedPath = cleanPath;
+    const encodedPath =
+        cleanPath
+            .split("/")
+            .map(
+                part =>
+                    encodeURIComponent(part)
+            )
+            .join("/");
 
-    // ==================================================
-    // GITHUB CONTENTS API
-    // ==================================================
 
     return (
         "https://api.github.com/repos/" +
@@ -215,40 +220,33 @@ function getGitHubApiUrl(filePath) {
 
 }
 
+
 // ======================================================
-// GITHUB'DAN MEDYA PARÇASI İNDİR
+// GITHUB API İSTEĞİ
 // ======================================================
 
-async function fetchGitHubPart(partUrl) {
-
-    // ==================================================
-    // PART PATH
-    // ==================================================
-
-    const githubPath =
-        partUrl.replace(/^\/+/, "");
-
-    // ==================================================
-    // GITHUB API URL
-    // ==================================================
+async function githubRequest(
+    githubPath
+) {
 
     const apiUrl =
-        getGitHubApiUrl(githubPath);
+        getGitHubApiUrl(
+            githubPath
+        );
+
 
     console.log(
-        "[SW] GitHub isteği:",
+        "[SW] GitHub:",
         githubPath
     );
 
-    // ==================================================
-    // GITHUB REQUEST
-    // ==================================================
 
     const response =
         await fetch(
             apiUrl,
             {
                 headers: {
+
                     "Accept":
                         "application/vnd.github.raw+json",
 
@@ -257,207 +255,472 @@ async function fetchGitHubPart(partUrl) {
 
                     "X-GitHub-Api-Version":
                         "2026-03-10"
+
                 }
             }
         );
 
-    // ==================================================
-    // 404 = PART YOK
-    // ==================================================
 
-    if (response.status === 404) {
+    if (
+        response.status ===
+        404
+    ) {
+
         return null;
+
     }
 
-    // ==================================================
-    // GERÇEK HATA
-    // ==================================================
 
     if (!response.ok) {
 
         let errorText = "";
 
+
         try {
+
             errorText =
                 await response.text();
-        } catch (_) {
+
+        }
+        catch (_) {
+
             errorText = "";
+
         }
 
+
         throw new Error(
+
             `GitHub API hatası: ${response.status}` +
+
             (
                 errorText
                     ? ` - ${errorText}`
                     : ""
             )
+
         );
+
     }
 
-    // ==================================================
-    // BAŞARILI
-    // ==================================================
 
     return response;
+
 }
 
+
 // ======================================================
-// DERSİN TÜM MEDYALARINI CACHE'LE
+// DİZİN LİSTELE
 // ======================================================
 
-async function cacheLessonMedia(
-    lessonUrl
+async function listGitHubDirectory(
+    directoryPath
 ) {
 
-    for (
-        const mediaPath
-        of MEDIA_FILES
-    ) {
-
-        const videoUrl =
-            new URL(
-
-                mediaPath,
-
-                new URL(
-                    lessonUrl,
-                    self.location.origin
-                )
-
-            ).pathname;
-
-        console.log(
-            "[SW] Medya kontrol ediliyor:",
-            videoUrl
+    const apiUrl =
+        getGitHubApiUrl(
+            directoryPath
         );
 
-        await cacheMediaParts(
-            videoUrl
+
+    const response =
+        await fetch(
+            apiUrl,
+            {
+                headers: {
+
+                    "Accept":
+                        "application/vnd.github+json",
+
+                    "Authorization":
+                        `Bearer ${githubToken}`,
+
+                    "X-GitHub-Api-Version":
+                        "2026-03-10"
+
+                }
+            }
+        );
+
+
+    if (
+        response.status ===
+        404
+    ) {
+
+        throw new Error(
+            "Ders klasörü GitHub'da bulunamadı:\n" +
+            directoryPath
         );
 
     }
 
-}
 
-// ======================================================
-// TEK BİR MEDYANIN PARÇALARINI CACHE'E AL
-// ======================================================
+    if (!response.ok) {
 
-async function cacheMediaParts(
-    mediaUrl
-) {
+        let errorText = "";
 
-    const cache =
-        await caches.open(
-            CACHE_NAME
+
+        try {
+
+            errorText =
+                await response.text();
+
+        }
+        catch (_) {
+
+            errorText = "";
+
+        }
+
+
+        throw new Error(
+
+            `GitHub klasör listeleme hatası: ${response.status}` +
+
+            (
+                errorText
+                    ? ` - ${errorText}`
+                    : ""
+            )
+
         );
 
-    let foundPart = false;
+    }
 
-    // ==================================================
-    // PART'LARI SIRAYLA DENE
-    // ==================================================
+
+    const data =
+        await response.json();
+
+
+    if (!Array.isArray(data)) {
+
+        throw new Error(
+            "GitHub'dan klasör listesi alınamadı."
+        );
+
+    }
+
+
+    return data;
+
+}
+
+
+// ======================================================
+// DERS KLASÖRÜNDEKİ TÜM DOSYALARI BUL
+// ======================================================
+
+async function findAllFiles(
+    directoryPath
+) {
+
+    const entries =
+        await listGitHubDirectory(
+            directoryPath
+        );
+
+
+    const files = [];
+
 
     for (
-        let i = 0;
-        ;
-        i++
+        const entry
+        of entries
     ) {
 
-        const partUrl =
-            mediaUrl +
-            ".part" +
-            String(i).padStart(
-                3,
-                "0"
-            );
+        // ----------------------------------------------
+        // DOSYA
+        // ----------------------------------------------
 
-        // ==================================================
-        // CACHE'DE VAR MI?
-        // ==================================================
+        if (
+            entry.type ===
+            "file"
+        ) {
 
-        const existing =
-            await cache.match(
-                partUrl
-            );
-
-        if (existing) {
-
-            foundPart = true;
-
-            console.log(
-                "[SW] Zaten cache'de:",
-                partUrl
+            files.push(
+                entry.path
             );
 
             continue;
 
         }
 
-        // ==================================================
-        // GITHUB'DAN İNDİR
-        // ==================================================
 
-        console.log(
-            "[SW] GitHub'dan indiriliyor:",
-            partUrl
-        );
-
-        const response =
-            await fetchGitHubPart(
-                partUrl
-            );
-
-        // ==================================================
-        // PART YOK
-        // ==================================================
+        // ----------------------------------------------
+        // KLASÖR
+        // ----------------------------------------------
 
         if (
-            response === null
+            entry.type ===
+            "dir"
         ) {
 
-            if (!foundPart) {
-
-                console.log(
-                    "[SW] Medya bulunamadı, atlanıyor:",
-                    mediaUrl
+            const subFiles =
+                await findAllFiles(
+                    entry.path
                 );
 
-            } else {
 
-                console.log(
-                    "[SW] Son parça bulundu, cacheleme tamamlandı:",
-                    partUrl
-                );
-
-            }
-
-            break;
+            files.push(
+                ...subFiles
+            );
 
         }
 
-        // ==================================================
-        // CACHE'E KOY
-        // ==================================================
+    }
 
-        await cache.put(
-            partUrl,
-            response
-        );
 
-        foundPart = true;
+    return files;
 
-        console.log(
-            "[SW] Cache'lendi:",
-            partUrl
+}
+
+
+// ======================================================
+// DERSİ TAMAMEN RAM'E YÜKLE
+// ======================================================
+
+async function loadLesson(
+    lessonPath
+) {
+
+    // ==================================================
+    // GITHUB AYAR KONTROLÜ
+    // ==================================================
+
+    if (
+        !githubOwner ||
+        !githubRepo ||
+        !githubToken
+    ) {
+
+        throw new Error(
+            "GitHub ayarları hazır değil."
         );
 
     }
 
+
+    // ==================================================
+    // YOLU TEMİZLE
+    // ==================================================
+
+    const cleanLessonPath =
+        lessonPath
+            .replace(
+                /^\/+/,
+                ""
+            )
+            .replace(
+                /\/+$/,
+                ""
+            );
+
+
+    if (!cleanLessonPath) {
+
+        throw new Error(
+            "Geçersiz ders klasörü."
+        );
+
+    }
+
+
+    console.log(
+        "[SW] Ders klasörü:",
+        cleanLessonPath
+    );
+
+
+    // ==================================================
+    // ESKİ DERSİ HEMEN SİLME
+    // ==================================================
+    //
+    // Yeni ders tamamen yüklenene kadar
+    // eski ders RAM'de kalabilir.
+    //
+    // Yeni ders başarılı olunca aşağıda
+    // currentLesson değiştirilecek.
+    // ==================================================
+
+    console.log(
+        "[SW] Ders dosyaları keşfediliyor..."
+    );
+
+
+    // ==================================================
+    // KLASÖRDEKİ TÜM DOSYALARI BUL
+    // ==================================================
+
+    const githubFiles =
+        await findAllFiles(
+            cleanLessonPath
+        );
+
+
+    console.log(
+        "[SW] Bulunan dosya sayısı:",
+        githubFiles.length
+    );
+
+
+    if (
+        githubFiles.length ===
+        0
+    ) {
+
+        throw new Error(
+            "Ders klasörü boş."
+        );
+
+    }
+
+
+    // ==================================================
+    // YENİ RAM
+    // ==================================================
+
+    const newFiles =
+        new Map();
+
+
+    // ==================================================
+    // TÜM DOSYALARI RAM'E AL
+    // ==================================================
+
+    for (
+        let i = 0;
+        i < githubFiles.length;
+        i++
+    ) {
+
+        const githubFilePath =
+            githubFiles[i];
+
+
+        console.log(
+            `[SW] Dosya ${i + 1}/${githubFiles.length}:`,
+            githubFilePath
+        );
+
+
+        const response =
+            await githubRequest(
+                githubFilePath
+            );
+
+
+        if (!response) {
+
+            throw new Error(
+                "Dosya bulunamadı:\n" +
+                githubFilePath
+            );
+
+        }
+
+
+        const buffer =
+            await response.arrayBuffer();
+
+
+        // ----------------------------------------------
+        // DERS KLASÖRÜNE GÖRE RELATIVE PATH
+        // ----------------------------------------------
+
+        let relativePath =
+            githubFilePath.slice(
+                cleanLessonPath.length
+            );
+
+
+        relativePath =
+            relativePath.replace(
+                /^\/+/,
+                ""
+            );
+
+
+        // ----------------------------------------------
+        // RAM'E KOY
+        // ----------------------------------------------
+
+        newFiles.set(
+            relativePath,
+            buffer
+        );
+
+
+        console.log(
+            "[SW] RAM'e alındı:",
+            relativePath,
+            "(",
+            buffer.byteLength,
+            "bytes )"
+        );
+
+    }
+
+
+    // ==================================================
+    // INDEX.HTML VAR MI?
+    // ==================================================
+
+    if (
+        !newFiles.has(
+            "index.html"
+        )
+    ) {
+
+        throw new Error(
+            "Ders klasöründe index.html bulunamadı."
+        );
+
+    }
+
+
+    // ==================================================
+    // YENİ DERSİ AKTİF ET
+    // ==================================================
+
+    currentLesson = {
+
+        path:
+            cleanLessonPath,
+
+        files:
+            newFiles
+
+    };
+
+
+    console.log(
+        "[SW] =================================="
+    );
+
+    console.log(
+        "[SW] DERS RAM'E ALINDI"
+    );
+
+    console.log(
+        "[SW] Klasör:",
+        currentLesson.path
+    );
+
+    console.log(
+        "[SW] Dosya sayısı:",
+        currentLesson.files.size
+    );
+
+    console.log(
+        "[SW] =================================="
+    );
+
 }
 
+
 // ======================================================
-// MEDYA İSTEĞİNİ YAKALA
+// FETCH
 // ======================================================
 
 self.addEventListener(
@@ -467,271 +730,120 @@ self.addEventListener(
         const request =
             event.request;
 
+
         const url =
             new URL(
                 request.url
             );
 
-        // ==================================================
-        // DESTEKLENEN MEDYA MI?
-        // ==================================================
 
-        const isSupportedMedia =
-            MEDIA_FILES.some(
-                mediaPath =>
-                    url.pathname.endsWith(
-                        "/" + mediaPath
-                    )
-            );
+        // ==================================================
+        // DERS SAYFASI
+        // ==================================================
+        //
+        // Tarayıcı:
+        //
+        // /dersizle.html
+        //
+        // istediğinde RAM'deki:
+        //
+        // index.html
+        //
+        // döndürülecek.
+        // ==================================================
 
         if (
-            !isSupportedMedia
+            url.pathname.endsWith(
+                "/dersizle.html"
+            ) ||
+            url.pathname ===
+                "/dersizle.html"
         ) {
+
+            if (
+                !currentLesson
+            ) {
+
+                return;
+
+            }
+
+
+            event.respondWith(
+                serveLessonIndex()
+            );
+
+
             return;
+
         }
 
-        console.log(
-            "[SW] MEDIA:",
-            request.method,
-            request.url,
-            "Range:",
-            request.headers.get(
-                "range"
-            )
-        );
 
-        event.respondWith(
-            handleMediaRequest(
-                request
+        // ==================================================
+        // AKTİF DERS RAM'DE DEĞİLSE
+        // ==================================================
+
+        if (
+            !currentLesson
+        ) {
+
+            return;
+
+        }
+
+
+        // ==================================================
+        // DERSİN VİRTÜEL ROOT YOLU
+        // ==================================================
+
+        const lessonRoot =
+            "/" +
+            encodeLessonPath(
+                currentLesson.path
+            );
+
+
+        // ==================================================
+        // URL DERS KLASÖRÜNÜN İÇİNDE Mİ?
+        // ==================================================
+
+        if (
+            url.pathname ===
+                lessonRoot ||
+
+            url.pathname.startsWith(
+                lessonRoot + "/"
             )
-        );
+        ) {
+
+            event.respondWith(
+                serveLessonFile(
+                    url.pathname
+                )
+            );
+
+        }
 
     }
 );
 
+
 // ======================================================
-// MEDYA → PARÇALARDAN OLUŞTUR
+// DERS INDEX.HTML SERVİSİ
 // ======================================================
 
-async function handleMediaRequest(
-    request
-) {
+async function serveLessonIndex() {
 
-    const cache =
-        await caches.open(
-            CACHE_NAME
+    const buffer =
+        currentLesson.files.get(
+            "index.html"
         );
 
-    const mediaUrl =
-        new URL(
-            request.url
-        ).href;
 
-    const pathname =
-        new URL(
-            request.url
-        ).pathname;
-
-    const range =
-        request.headers.get(
-            "range"
-        );
-
-    console.log(
-        "[SW] MEDIA RANGE:",
-        range
-    );
-
-    // ==================================================
-    // HEAD
-    // ==================================================
-
-    if (
-        request.method ===
-        "HEAD"
-    ) {
-
-        const totalSize =
-            await getMediaSize(
-                cache,
-                mediaUrl
-            );
-
-        if (
-            totalSize === 0
-        ) {
-
-            return new Response(
-                null,
-                {
-                    status: 404
-                }
-            );
-
-        }
+    if (!buffer) {
 
         return new Response(
-            null,
-            {
-
-                status: 200,
-
-                headers: {
-
-                    "Content-Type":
-                        getContentType(
-                            pathname
-                        ),
-
-                    "Content-Length":
-                        String(
-                            totalSize
-                        ),
-
-                    "Accept-Ranges":
-                        "bytes"
-
-                }
-
-            }
-        );
-
-    }
-
-    // ==================================================
-    // RANGE YOK
-    // ==================================================
-
-    if (!range) {
-
-        console.log(
-            "[SW] ⚠️ RANGE YOK:",
-            request.url
-        );
-
-        return new Response(
-            null,
-            {
-
-                status: 200,
-
-                headers: {
-
-                    "Content-Type":
-                        getContentType(
-                            pathname
-                        ),
-
-                    "Accept-Ranges":
-                        "bytes",
-
-                    "Content-Length":
-                        "0"
-
-                }
-
-            }
-        );
-
-    }
-
-    // ==================================================
-    // RANGE PARSE
-    // ==================================================
-
-    const match =
-        range.match(
-            /bytes=(\d+)-(\d*)/
-        );
-
-    if (!match) {
-
-        return new Response(
-            "Invalid Range",
-            {
-                status: 416
-            }
-        );
-
-    }
-
-    const start =
-        Number(
-            match[1]
-        );
-
-    const requestedEnd =
-        match[2]
-            ? Number(match[2])
-            : null;
-
-    // ==================================================
-    // CACHE'DEKİ PARÇALARI BUL
-    // ==================================================
-
-    const parts = [];
-
-    let totalSize = 0;
-
-    for (
-        let i = 0;
-        ;
-        i++
-    ) {
-
-        const partUrl =
-            mediaUrl +
-            ".part" +
-            String(i).padStart(
-                3,
-                "0"
-            );
-
-        const response =
-            await cache.match(
-                partUrl
-            );
-
-        if (!response) {
-            break;
-        }
-
-        const buffer =
-            await response.arrayBuffer();
-
-        parts.push({
-
-            buffer: buffer,
-
-            start: totalSize,
-
-            end:
-                totalSize +
-                buffer.byteLength -
-                1
-
-        });
-
-        totalSize +=
-            buffer.byteLength;
-
-    }
-
-    // ==================================================
-    // HİÇ PARÇA YOK
-    // ==================================================
-
-    if (
-        parts.length === 0
-    ) {
-
-        console.error(
-            "[SW] Cache'de medya parçaları yok:",
-            mediaUrl
-        );
-
-        return new Response(
-            "Medya parçaları cache'de yok",
+            "Ders index.html bulunamadı.",
             {
                 status: 404
             }
@@ -739,171 +851,209 @@ async function handleMediaRequest(
 
     }
 
-    // ==================================================
-    // END HESAPLA
-    // ==================================================
-
-    const end =
-        requestedEnd !== null
-            ? Math.min(
-                requestedEnd,
-                totalSize - 1
-            )
-            : totalSize - 1;
 
     // ==================================================
-    // RANGE GEÇERSİZ
+    // HTML'I UTF-8 OLARAK OKU
+    // ==================================================
+
+    const decoder =
+        new TextDecoder(
+            "utf-8"
+        );
+
+
+    let html =
+        decoder.decode(
+            buffer
+        );
+
+
+    // ==================================================
+    // BASE HREF
+    // ==================================================
+    //
+    // Çok önemli:
+    //
+    // Tarayıcı URL'si:
+    //
+    // /dersizle.html
+    //
+    // olduğu için HTML'in:
+    //
+    // css/style.css
+    //
+    // gibi relative yolları normalde:
+    //
+    // /css/style.css
+    //
+    // olarak çözümlenecekti.
+    //
+    // Burada base ekleyerek:
+    //
+    // /DERS_KLASORU/css/style.css
+    //
+    // yapılmasını sağlıyoruz.
+    // ==================================================
+
+    const baseHref =
+        "/" +
+        encodeLessonPath(
+            currentLesson.path
+        ) +
+        "/";
+
+
+    const baseTag =
+        `<base href="${baseHref}">`;
+
+
+    if (
+        /<base\s/i.test(
+            html
+        )
+    ) {
+
+        html =
+            html.replace(
+                /<base\b[^>]*>/i,
+                baseTag
+            );
+
+    }
+    else {
+
+        html =
+            html.replace(
+                /<head\b[^>]*>/i,
+                match =>
+                    match +
+                    baseTag
+            );
+
+    }
+
+
+    return new Response(
+        html,
+        {
+            status: 200,
+
+            headers: {
+
+                "Content-Type":
+                    "text/html; charset=utf-8"
+
+            }
+
+        }
+    );
+
+}
+
+
+// ======================================================
+// DERS DOSYASI SERVİSİ
+// ======================================================
+
+async function serveLessonFile(
+    pathname
+) {
+
+    // ==================================================
+    // URL'DEN VİRTÜEL DERS ROOT'UNU ÇIKAR
+    // ==================================================
+
+    const lessonRoot =
+        "/" +
+        encodeLessonPath(
+            currentLesson.path
+        );
+
+
+    let relativePath =
+        pathname.slice(
+            lessonRoot.length
+        );
+
+
+    relativePath =
+        decodeURIComponent(
+            relativePath
+        );
+
+
+    relativePath =
+        relativePath.replace(
+            /^\/+/,
+            ""
+        );
+
+
+    // ==================================================
+    // TRAILING SLASH / INDEX
     // ==================================================
 
     if (
-        start >= totalSize ||
-        start > end
+        !relativePath
     ) {
 
+        relativePath =
+            "index.html";
+
+    }
+
+
+    // ==================================================
+    // RAM'DEN BUL
+    // ==================================================
+
+    const buffer =
+        currentLesson.files.get(
+            relativePath
+        );
+
+
+    if (!buffer) {
+
+        console.error(
+            "[SW] RAM'de dosya bulunamadı:",
+            relativePath
+        );
+
+
         return new Response(
-            null,
+            "Dosya RAM'de bulunamadı:\n" +
+            relativePath,
             {
-
-                status: 416,
-
-                headers: {
-
-                    "Content-Range":
-                        `bytes */${totalSize}`
-
-                }
-
+                status: 404
             }
         );
 
     }
 
-    // ==================================================
-    // İSTENEN BYTE'LARI PARÇALARDAN ÇIKAR
-    // ==================================================
-
-    const outputParts = [];
-
-    for (
-        const part
-        of parts
-    ) {
-
-        if (
-            part.end < start
-        ) {
-            continue;
-        }
-
-        if (
-            part.start > end
-        ) {
-            break;
-        }
-
-        const sliceStart =
-            Math.max(
-                0,
-                start -
-                part.start
-            );
-
-        const sliceEnd =
-            Math.min(
-                part.buffer.byteLength,
-                end -
-                part.start +
-                1
-            );
-
-        outputParts.push(
-
-            new Uint8Array(
-
-                part.buffer.slice(
-                    sliceStart,
-                    sliceEnd
-                )
-
-            )
-
-        );
-
-    }
-
-    // ==================================================
-    // OUTPUT OLUŞTUR
-    // ==================================================
-
-    const outputSize =
-        outputParts.reduce(
-
-            (sum, part) =>
-                sum +
-                part.byteLength,
-
-            0
-
-        );
-
-    const output =
-        new Uint8Array(
-            outputSize
-        );
-
-    let offset = 0;
-
-    for (
-        const part
-        of outputParts
-    ) {
-
-        output.set(
-            part,
-            offset
-        );
-
-        offset +=
-            part.byteLength;
-
-    }
-
-    // ==================================================
-    // 206 RESPONSE
-    // ==================================================
 
     console.log(
-        "[SW] 206:",
-        start,
-        "-",
-        end,
-        "/",
-        totalSize
+        "[SW] RAM →",
+        relativePath
     );
 
-    return new Response(
-        output,
-        {
 
-            status: 206,
+    return new Response(
+        buffer,
+        {
+            status: 200,
 
             headers: {
 
                 "Content-Type":
                     getContentType(
-                        pathname
+                        relativePath
                     ),
 
                 "Content-Length":
                     String(
-                        output.byteLength
-                    ),
-
-                "Content-Range":
-                    `bytes ${start}-${end}/${totalSize}`,
-
-                "Accept-Ranges":
-                    "bytes"
+                        buffer.byteLength
+                    )
 
             }
 
@@ -912,72 +1062,231 @@ async function handleMediaRequest(
 
 }
 
+
 // ======================================================
-// MEDYANIN TOPLAM BOYUTUNU BUL
+// DERS PATH'İNİ URL PATH'E ÇEVİR
 // ======================================================
 
-async function getMediaSize(
-    cache,
-    mediaUrl
+function encodeLessonPath(
+    path
 ) {
 
-    let totalSize = 0;
-
-    for (
-        let i = 0;
-        ;
-        i++
-    ) {
-
-        const partUrl =
-            mediaUrl +
-            ".part" +
-            String(i).padStart(
-                3,
-                "0"
-            );
-
-        const response =
-            await cache.match(
-                partUrl
-            );
-
-        if (!response) {
-            break;
-        }
-
-        const buffer =
-            await response.arrayBuffer();
-
-        totalSize +=
-            buffer.byteLength;
-
-    }
-
-    return totalSize;
+    return path
+        .split("/")
+        .map(
+            part =>
+                encodeURIComponent(part)
+        )
+        .join("/");
 
 }
 
+
 // ======================================================
-// CONTENT-TYPE
+// CONTENT TYPE
 // ======================================================
 
 function getContentType(
     pathname
 ) {
 
+    const lower =
+        pathname.toLowerCase();
+
+
+    // HTML
     if (
-        pathname.endsWith(
-            ".webm"
+        lower.endsWith(
+            ".html"
+        ) ||
+        lower.endsWith(
+            ".htm"
         )
     ) {
 
-        return "video/webm";
+        return "text/html; charset=utf-8";
 
     }
 
+
+    // CSS
     if (
-        pathname.endsWith(
+        lower.endsWith(
+            ".css"
+        )
+    ) {
+
+        return "text/css; charset=utf-8";
+
+    }
+
+
+    // JavaScript
+    if (
+        lower.endsWith(
+            ".js"
+        ) ||
+        lower.endsWith(
+            ".mjs"
+        )
+    ) {
+
+        return "application/javascript";
+
+    }
+
+
+    // JSON
+    if (
+        lower.endsWith(
+            ".json"
+        )
+    ) {
+
+        return "application/json";
+
+    }
+
+
+    // XML
+    if (
+        lower.endsWith(
+            ".xml"
+        )
+    )
+    {
+
+        return "application/xml";
+
+    }
+
+
+    // SVG
+    if (
+        lower.endsWith(
+            ".svg"
+        )
+    ) {
+
+        return "image/svg+xml";
+
+    }
+
+
+    // PNG
+    if (
+        lower.endsWith(
+            ".png"
+        )
+    ) {
+
+        return "image/png";
+
+    }
+
+
+    // JPEG
+    if (
+        lower.endsWith(
+            ".jpg"
+        ) ||
+        lower.endsWith(
+            ".jpeg"
+        )
+    ) {
+
+        return "image/jpeg";
+
+    }
+
+
+    // GIF
+    if (
+        lower.endsWith(
+            ".gif"
+        )
+    ) {
+
+        return "image/gif";
+
+    }
+
+
+    // WEBP
+    if (
+        lower.endsWith(
+            ".webp"
+        )
+    ) {
+
+        return "image/webp";
+
+    }
+
+
+    // ICO
+    if (
+        lower.endsWith(
+            ".ico"
+        )
+    ) {
+
+        return "image/x-icon";
+
+    }
+
+
+    // WOFF
+    if (
+        lower.endsWith(
+            ".woff"
+        )
+    ) {
+
+        return "font/woff";
+
+    }
+
+
+    // WOFF2
+    if (
+        lower.endsWith(
+            ".woff2"
+        )
+    ) {
+
+        return "font/woff2";
+
+    }
+
+
+    // TTF
+    if (
+        lower.endsWith(
+            ".ttf"
+        )
+    ) {
+
+        return "font/ttf";
+
+    }
+
+
+    // EOT
+    if (
+        lower.endsWith(
+            ".eot"
+        )
+    ) {
+
+        return "application/vnd.ms-fontobject";
+
+    }
+
+
+    // MP4
+    if (
+        lower.endsWith(
             ".mp4"
         )
     ) {
@@ -986,6 +1295,44 @@ function getContentType(
 
     }
 
+
+    // WEBM
+    if (
+        lower.endsWith(
+            ".webm"
+        )
+    ) {
+
+        return "video/webm";
+
+    }
+
+
+    // MP4 PART
+    if (
+        lower.match(
+            /\.mp4\.part\d+$/
+        )
+    ) {
+
+        return "application/octet-stream";
+
+    }
+
+
+    // WEBM PART
+    if (
+        lower.match(
+            /\.webm\.part\d+$/
+        )
+    ) {
+
+        return "application/octet-stream";
+
+    }
+
+
+    // Varsayılan
     return "application/octet-stream";
 
 }
